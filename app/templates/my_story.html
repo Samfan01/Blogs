@@ -6,25 +6,16 @@
       href="{{url_for('static', filename='navbar.css')}}">
 {% endblock %}
 
+
 <!-- Navbar block -->
 {% block navbar %}
     {% include 'navbar.html' %}
 {% endblock %}
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
-        {% if title %}
-        <title> {{ title }} </title>
-        {% else %}
-        <title>Welcome to Douglas Samphan Blog Spot.</title>
-        {% endif %}
+        <title>{{ title }}</title>
     </head>
-    <body>
-        <!-- Content block -->
-        {% block content %}
-        <h1>Hello World</h1>
-        {% endblock %}
-        
-    </body>
 </html>
