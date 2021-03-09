@@ -1,0 +1,15 @@
+*{
+    font-family: 'Indie Flower', cursive;
+}
+h1{
+    
+    font-weight: bolder;
+    padding-bottom: 20px;
+}
+#early{
+    border-bottom: solid black 5px;
+    padding-top: 20px;
+}
+#education{
+    padding-top: 20px;
+}

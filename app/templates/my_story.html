@@ -1,21 +1,60 @@
 {% extends 'bootstrap/base.html' %}
-{% block styles %}
-{{super()}}
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-<link rel="stylesheet"
-      href="{{url_for('static', filename='navbar.css')}}">
-{% endblock %}
+
+{% block styles%}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<link rel="stylesheet" href="{{url_for('static', filename='css/my_story.css')}}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+{% endblock%}
 
 
 <!-- Navbar block -->
-{% block navbar %}
+<!-- {% block navbar %}
     {% include 'navbar.html' %}
-{% endblock %}
+{% endblock %} -->
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>{{ title }}</title>
-    </head>
-</html>
+
+<!-- Content block -->
+{% block content %}
+
+
+<div class="container-fluid">
+    
+    <div class="row" id="early">
+        <h1>Early Life and Family</h1>
+        <div class="col-md-8">
+            <img src="../static/images/early.jpg" alt="early" width="100%" height="60%">
+        </div>
+        <div class="col-md-4">
+            <h3>Facts</h3>
+            <ul>
+                <li>Birth: 26 of August The Year 1995.</li>
+                <li>Birth Place: Born at St. Catherine Hospital in Daggoretti.</li>
+                <li>Baptism: Baptised at st.Joseph of apostles, Kabwareng Parish.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row" id="education">
+        <div class="col-md-4">
+            <h3>Facts</h3>
+            <ul>
+                <li>Attended both Dr, Krapf and Ofafa Jericho for Primary School Education</li>
+                <li>Attended both Kinyui Boys and Imusudzu for High School Education. </li>
+            </ul>
+    
+        </div>
+        <div class="col-md-8">
+            <h1>Education And Acheivements</h1>
+            <img src="../static/images/education.jpeg" alt="education" width="100%" height="60%">
+        </div>
+    
+    </div>
+    
+    
+
+</div>
+
+
+
+{% endblock %}
