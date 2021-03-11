@@ -2,7 +2,7 @@ from flask import render_template,request,redirect,url_for,abort
 from . import main
 from flask_login import login_required
 from ..models import User
-from .forms import UpdateProfile
+from .forms import UpdateProfile,BlogForm
 from .. import db,photos
 
 #Views
@@ -71,3 +71,23 @@ def blog():
     '''
     
     return render_template('blog.html')
+
+@main.route('/blog/new<title>',methods = ['GET','POST'])
+@login_required
+def new_blog(title):
+    form = BlogForm
+    
+    if form.validate_on_submit():
+        blog_title = form.title.data
+        blog_description = form.description.data
+        blog_source = form.source.data
+        
+        #updated new blog instance
+        new_blog = Blog(blog_title=blog_title,blog_description=blog_description,blog_source=blog_source)
+        
+        #save blog method
+        new_blog.save_blog()
+        return redirect(url_for('.blog',blog_title=blog_title))
+    
+    return render_template('new_blog.html',blog_form = form)
+

@@ -4,6 +4,10 @@ from flask_login import UserMixin
 from . import login_manager
 from datetime import datetime
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
 class User(UserMixin,db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key = True)
@@ -12,7 +16,7 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
-    blogs = db.relationship('Review',backref = 'user',lazy = 'dynamic')
+    blogs = db.relationship('Blog',backref = 'user',lazy = 'dynamic')
     
     @property
     def password(self):
@@ -28,9 +32,7 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User{self.username}'
     
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+  
 
 class Blog(db.Model):
     
@@ -38,7 +40,7 @@ class Blog(db.Model):
     
     id = db.Column(db.Integer,primary_key = True)
     blog_title = db.Column(db.String)
-    blog_description = db.Column(db.string)
+    blog_description = db.Column(db.String)
     blog_source = db.Column(db.String)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
@@ -49,6 +51,6 @@ class Blog(db.Model):
         
     @classmethod
     def get_blogs(cls,id):
-        blogs = Blog.query.filter_by(blog_title = title).all()
+        blogs = Blog.query.filter_by(blog_title = blog_title).all()
         
         return blogs
