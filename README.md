@@ -1,3 +1,13 @@
+# Blog_Hub
+
+
+  An application that enables the user to access various Blogs and their respective most recent Written Blogs
+
+## Versioning
+
+ Blog_Hub-App-V1.0
+
+## Author
 
 * **Samfan01**
 
