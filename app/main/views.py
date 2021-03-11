@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from flask_login import login_required
-from ..models import User
+from flask_login import login_required,current_user
+from ..models import User,Blog
 from .forms import UpdateProfile,BlogForm
 from .. import db,photos
 
@@ -69,25 +69,27 @@ def blog():
     '''
     vie function that returns the blog page and its data
     '''
+    blogs = Blog.get_blogs()
+    blog = Blog.query.all()
     
-    return render_template('blog.html')
+    return render_template('blog.html',blogs = blog)
 
-@main.route('/blog/new<title>',methods = ['GET','POST'])
+@main.route('/blog/new_blog',methods = ['GET','POST'])
 @login_required
-def new_blog(title):
-    form = BlogForm
+def new_blog():
+    form = BlogForm()
     
     if form.validate_on_submit():
-        blog_title = form.title.data
-        blog_description = form.description.data
-        blog_source = form.source.data
+        blog_title = form.blog_title.data
+        blog_description = form.blog_description.data
+        blog_source = form.blog_source.data
         
         #updated new blog instance
-        new_blog = Blog(blog_title=blog_title,blog_description=blog_description,blog_source=blog_source)
+        new_blog = Blog(blog_title=blog_title,blog_description=blog_description,blog_source=blog_source,user = current_user)
         
         #save blog method
         new_blog.save_blog()
-        return redirect(url_for('.blog',blog_title=blog_title))
+        return redirect(url_for('.blog'))
     
     return render_template('new_blog.html',blog_form = form)
 

@@ -1,14 +1,14 @@
 {% extends 'bootstrap/base.html' %}
 {% block styles %}
 {{super()}}
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-<link rel="stylesheet"
-      href="{{url_for('static', filename='navbar.css')}}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<link rel="stylesheet" href="{{url_for('static', filename='navbar.css')}}">
 {% endblock %}
 
 <!-- Navbar block -->
 {% block navbar %}
-    {% include 'navbar.html' %}
+{% include 'navbar.html' %}
 {% endblock %}
 {% block content %}
 
@@ -18,25 +18,29 @@
 
 </div>
 
-<h1><center>RECENT BLOGS</center></h1>
+<h1>
+    <center>RECENT BLOGS</center>
+</h1>
 
 <div class="container">
+    {% for blog in blogs %}
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
             <div class="card">
-                <h5 class="card-header">Featured</h5>
+                <h5 class="card-header">{{blog.blog_title}}</h5>
                 <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">{{blog.posted}}</h5>
+                    <p class="card-text">{{blog.blog_description}}</p>
+                    <a href="{{blog.blog_source}}" class="btn btn-primary">Go to source</a>
                 </div>
-              </div>
-
+            </div>
+<br>
         </div>
         <div class="col-md-2"></div>
 
     </div>
+    {% endfor %}
 
 </div>
 {% endblock %}

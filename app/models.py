@@ -50,7 +50,7 @@ class Blog(db.Model):
         db.session.commit()
         
     @classmethod
-    def get_blogs(cls,id):
-        blogs = Blog.query.filter_by(blog_title = blog_title).all()
+    def get_blogs(cls):
+        blogs = Blog.query.all()
         
         return blogs
